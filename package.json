@@ -1,7 +1,7 @@
 {
   "name": "js-01",
   "version": "1.0.0",
-  "description": "",
+  "description": "node.js Project 01",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,5 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abelszabo/node-js-01.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abelszabo/node-js-01/issues"
+  },
+  "homepage": "https://github.com/abelszabo/node-js-01#readme"
 }
