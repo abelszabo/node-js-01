@@ -1,22 +1,31 @@
+const logger = require('./logger');
 const fs = require('fs');
+const fsAwait = require('fs').promises;
 
 function readFile(path) {
-    console.log("xxx");
-    time = (new Date()).getTime();
-    msg = `${time} File ${path} will be async reading..`;
-    console.log(msg);
+    logger.log(`File ${path} will be async reading..`);
 
     fs.readFile(path, 'utf8', (err, data) => {
         if (err) throw err;
-        time = (new Date()).getTime();
-        console.log(`${time} File ${path} was readed`);
-        console.log(data);
+
+        logger.log(`File ${path} was read. Content: ${data}`);
     });
 
-    time = (new Date()).getTime();
-    msg = `${time} File ${path} will be async reading...`;
-    console.log(msg);
+    msg = `File ${path} will be async reading...`;
+    logger.log(msg);
+
     return msg;
 }
 
-module.exports = { readFile };
+async function readFileAwaiting(path) {
+    logger.log(`File ${path} will be async reading and awaiting...`);
+
+    const data = await fsAwait.readFile(path, 'utf8');
+
+    msg = `File ${path} was read and awaited for it. Content: ${data}`;
+    logger.log(msg);
+
+    return msg;
+}
+
+module.exports = { readFile, readFileAwaiting };
