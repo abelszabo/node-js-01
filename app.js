@@ -1,9 +1,13 @@
-const logger = require('./logger');
-const math = require('./math');
-const fh = require('./fileHandler');
+// const logger = require('./logger');
+// const math = require('./math');
+// const fh = require('./fileHandler');
+// const express = require('express');
+// const http = require('http');
 
-const express = require('express');
-const http = require('http');
+import * as logger from './logger.js';
+import * as math from './math.js';
+import * as fh from './fileHandler.js';
+import express from 'express';
 
 const app = express();
 
@@ -34,10 +38,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/sum/:p1/:p2', (req, res) => {
-    p1 = req.params.p1;
-    p2 = req.params.p2;
-    sum = math.add(p1, p2);
-    info = `${p1} + ${p2} = ${sum}`;
+    const p1 = req.params.p1;
+    const p2 = req.params.p2;
+    const sum = math.add(p1, p2);
+    const info = `${p1} + ${p2} = ${sum}`;
     logger.log(info);
     res.send(info);
 });
