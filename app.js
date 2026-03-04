@@ -8,18 +8,22 @@ import * as logger from './logger.js';
 import * as math from './math.js';
 import * as fh from './fileHandler.js';
 import express from 'express';
+import * as path from "node:path";
 
 const app = express();
+
+//const TEST_FILE_PATH = path.resolve(process.cwd(), 'test');
+const TEST_FILE_PATH = path.resolve('resources/file.txt');
 
 logger.log("Hello Node.js!");
 logger.log(math.add(2, 3));
 
-fh.readFile('resources/file.txt')
+fh.readFile(TEST_FILE_PATH)
 
 // const server = http.createServer((req, res) => {
 //     res.write("Hello World!\n\n");
-//     res.write(fh.readFile('resources/file.txt'));
-//     fh.readFileAwaiting('resources/file.txt');
+//     res.write(fh.readFile(TEST_FILE_PATH));
+//     fh.readFileAwaiting(TEST_FILE_PATH);
 //     res.end();
 // });
 
@@ -27,13 +31,18 @@ fh.readFile('resources/file.txt')
 //     logger.log("Server fut a 3000-es porton");
 // });
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    //res.write(fh.readFile(TEST_FILE_PATH));
+    //res.write(await fh.readFileAwaiting(TEST_FILE_PATH));
+    //res.end();
+    res.send(await fh.readFileAwaiting(TEST_FILE_PATH));
+});
 
+app.get('/test', (req, res) => {
     // res.send('Hello Express!');
-
     res.write("Hello World!\n\n");
-    res.write(fh.readFile('resources/file.txt'));
-    fh.readFileAwaiting('resources/file.txt');
+    res.write(fh.readFile(TEST_FILE_PATH));
+    fh.readFileAwaiting(TEST_FILE_PATH);
     res.end();
 });
 

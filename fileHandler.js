@@ -28,7 +28,8 @@ export async function readFileAwaiting(path) {
     const msg = `File ${path} was read and awaited for it. Content: ${data}`;
     logger.log(msg);
 
-    return msg;
+    //return msg;
+    return data;
 }
 
 //module.exports = { readFile, readFileAwaiting };
