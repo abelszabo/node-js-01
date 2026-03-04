@@ -1,5 +1,5 @@
 function add(a, b) {
-    return a + b;
+    return parseInt(a, 10) + parseInt(b, 10);
 }
 
 module.exports = { add };
